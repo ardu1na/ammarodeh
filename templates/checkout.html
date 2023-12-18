@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="es">
+
+<!-- Head -->
+<head>
+  <!-- Page Meta Tags-->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+
+  <!-- Custom Google Fonts-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@300;400;700&display=auto"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+
+  <!-- Fix for custom scrollbar if JS is disabled-->
+  <noscript>
+    <style>
+      /**
+          * Reinstate scrolling for non-JS clients
+          */
+      .simplebar-content-wrapper {
+        overflow: auto;
+      }
+    </style>
+  </noscript>
+
+  <!-- Page Title -->
+  <title>E&J Computación | e-commerce</title>
+
+</head>
+<body class="">
+
+    <!-- Main Section-->
+    <section class="mt-0  vh-lg-100">
+        <!-- Page Content Goes Here -->
+        <div class="container">
+            <div class="row g-0 vh-lg-100">
+                <div class="col-lg-7 pt-5 pt-lg-10">
+                    <div class="pe-lg-5">
+                        <!-- Logo-->
+                        <a class="navbar-brand fw-bold fs-3 flex-shrink-0 mx-0 px-0" href="./index.html">
+                                <div class="d-flex align-items-center">
+                                    E&J
+                                </div>
+                            </a>
+                        <!-- / Logo-->
+                        <nav class="d-none d-md-block">
+                            <ul class="list-unstyled d-flex justify-content-start mt-4 align-items-center fw-bolder small">
+                                <li class="me-4"><a class="nav-link-checkout "
+                                        href="./cart.html">Carrito</a></li>
+                                <li class="me-4"><a class="nav-link-checkout active"
+                                        href="./checkout.html">Información</a></li>
+                                                                
+                            </ul>
+                        </nav>                        <div class="mt-5">
+
+
+
+
+                            <!-- Checkout Panel Information-->
+                            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-4">
+                              <h3 class="fs-5 fw-bolder m-0 lh-1">Contacto</h3>
+                            </div>
+                            
+                            <div class="row" id="profile-form">
+                                <!-- First Name-->
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="name" placeholder="" value="" required="">
+                                  </div>
+                                </div>
+                              
+                                <!-- Last Name-->
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="lastname" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="lastname" placeholder="" value="" required="">
+                                  </div>
+                                </div>
+
+                                <!-- phone Number-->
+                                <div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="phone" class="form-label">Número de teléfono</label>
+                                    <input type="text" class="form-control" id="phone" placeholder=" 54 9 11 5555 3333" value="" required="">
+                                  </div>
+                                </div>
+
+                                <!-- Address-->
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                      <label for="phone" class="form-label">Dirección</label>
+                                      <input type="text" class="form-control" id="address" placeholder="Avenida 234, Rio Cuarto, Córdoba, Argentina" value="" required="">
+                                    </div>
+                                  </div>
+
+
+                                <div class="py-2">
+                                  <div class="input-group mb-0 d-flex flex-row-reverse">
+                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3" id="submit-button">Guardar</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
+
+                                  </div>
+                              </div>
+
+                            
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                                               </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 bg-light pt-lg-10 aside-checkout pb-5 pb-lg-0 my-5 my-lg-0">
+                    <div class="p-4 py-lg-0 pe-lg-0 ps-lg-5">
+                        <div class="pb-3"  id="cartTable">
+
+
+                            <!-- Cart Item-->
+                            
+                        </div>
+                        
+                        <div class="py-4 border-bottom">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="m-0 fw-bold fs-5">Total</p>
+                                </div>
+                                <p class="m-0 fs-5 fw-bold" id="cartTotal">$0</p>
+                            </div>
+                        </div>
+
+                        <div class="py-4">
+                          <div class="pb-5 d-flex justify-content-md-end align-items-center">
+                            <a href="http://link.mercadopago.com.ar/informaticaeyj" class="btn btn-dark w-100 w-md-auto" role="button" target="_blank">Pagar</a> 
+                          </div>    
+                        </div>
+
+                        <div class="py-4">
+                          <div class="pb-5 d-flex justify-content-md-end align-items-center">
+                            <p>Al hacer click se abrirá una nueva ventana de Mercado Pago, coloca el monto total. Luego del pago nos comunicaremos contigo por email.</p> 
+                          </div>    
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </section>
+    <!-- / Main Section-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      
+      const token = localStorage.getItem('token');
+            
+            
+      // Fetch existing profile data and populate the form fields
+      fetch('http://127.0.0.1:8000/api/shop/profile/', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const nameField = document.getElementById('name');
+        const lastnameField = document.getElementById('lastname');
+        const phoneField = document.getElementById('phone');
+
+        nameField.value = data.name || '';  // Populate with existing name or leave blank
+        lastnameField.value = data.lastname || '';  // Populate with existing lastname or leave blank
+        phoneField.value = data.phone || '';  // Populate with existing phone or leave blank
+      });
+    </script>
+
+      <script>
+
+      document.getElementById('submit-button').addEventListener('click', function(event) {
+          // Prevent the default button click behavior (e.g., page reload)
+          event.preventDefault();
+  
+          // Get the values from your input elements manually
+          const nameProfile = document.getElementById('name').value;
+          const lastnameProfile = document.getElementById('lastname').value;
+          const phoneProfile = document.getElementById('phone').value;
+          const addressProfile = document.getElementById('address').value;
+
+          // Construct the form data
+          const formData = new FormData();
+          formData.append('name', nameProfile);
+          formData.append('lastname', lastnameProfile);
+          formData.append('phone', phoneProfile);
+          formData.append('address', addressProfile);
+
+          fetch('http://127.0.0.1:8000/api/shop/profile/update/', {
+              method: 'POST',
+              headers: {
+                  'Authorization': `Token ${token}`
+              },
+              body: formData
+          })
+          .then(response => {
+              if (response.ok) {
+                location.reload();
+                 
+
+                   
+              } else if (response.status === 409) {
+                  return response.json(); // Parse the JSON error response from the server   
+              } else {
+                  throw new Error('update failed');
+              }
+          })
+      });
+  </script>
+  
+  
+  <script>
+    const apiBaseUrl = 'http://127.0.0.1:8000';
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // JavaScript code to fetch user authentication status from Django API
+        const token = localStorage.getItem('token');
+        const cartTable = document.getElementById('cartTable');
+        const cartTotal= document.getElementById('cartTotal');
+
+        let cart = {}; 
+
+        
+            fetch('http://127.0.0.1:8000/api/shop/cart/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`
+                }
+            }).then(response => response.json())
+            .then(data => {
+                 
+                cart = data.cart;
+                products = cart.products;
+
+                cartTotal.textContent = '$' + cart.total;
+
+                let cartItemsHTML = '';  // Initialize an empty string to store the generated HTML
+
+                // Loop through each product in the cart and generate HTML
+                products.forEach(product => {
+                    cartItemsHTML += `
+
+
+                    <!-- Cart Item-->
+                        <div class="row mx-0 py-4 g-0 border-bottom">
+                            <div class="col-2 position-relative">
+                                <picture class="d-block border">
+                                    <img class="img-fluid " src="${apiBaseUrl}/${product.image}" alt="">
+                                </picture>
+                            </div>
+                            <div class="col-9 offset-1">
+                                <div>
+                                    <h6 class="justify-content-between d-flex align-items-start mb-2">
+                                        ${product.product_name}
+                                        <i class="ri-close-line ms-3" id="closeIcon-${product.id}"></i>
+                                    </h6>
+                                </div>
+                                <p class="fw-bolder text-end text-muted m-0">$${product.subtotal}</p>
+                            </div>
+                        </div>
+                    <!-- / Cart Item-->
+                    `;
+                });
+
+                cartTable.innerHTML = `
+                    
+                        ${cartItemsHTML}
+                    
+                `;
+                            
+            // Add click event listeners to close icons
+            products.forEach(product => {
+                const closeIcon = document.getElementById(`closeIcon-${product.id}`);
+                closeIcon.addEventListener('click', () => handleDeleteProduct(product.id));
+            });
+
+            // Function to handle delete product action
+            function handleDeleteProduct(productId) {
+                fetch(`${apiBaseUrl}/api/shop/cart/delete/${productId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success response if needed
+                    console.log('Product deleted:', data);
+                    // Remove the deleted product's HTML from the cart
+                    const productElement = document.getElementById(`closeIcon-${productId}`).closest('.border-bottom');
+                    productElement.remove();
+                    location.reload();
+
+                })
+                .catch(error => {
+                    console.error('Error deleting product:', error);
+                });
+            }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+
+            
+            
+            
+     
+            
+    })
+
+    </script>
+
+    <!-- Theme JS -->
+    <!-- Vendor JS -->
+    <script src="./assets/js/vendor.bundle.js"></script>
+    
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.bundle.js"></script>
+</body>
+
+</html>
