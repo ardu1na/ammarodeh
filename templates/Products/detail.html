@@ -134,24 +134,25 @@
   src="https://code.jquery.com/jquery-3.6.1.js"
   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
   crossorigin="anonymous"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
         $('.s-checkbox').on('change', function() {
-               $('.s-checkbox').not(this).prop('checked', false);
-           });
+                $('.s-checkbox').not(this).prop('checked', false);
+            });
     </script>
 
-    
-<script>
-    $('.navTrigger').click(function () {
-      $(this).toggleClass('active');
-      console.log("Clicked menu");
-      $("#mainListDiv").toggleClass("show_list");
-      $("#mainListDiv").fadeIn();
+        
+    <script>
+        $('.navTrigger').click(function () {
+        $(this).toggleClass('active');
+        console.log("Clicked menu");
+        $("#mainListDiv").toggleClass("show_list");
+        $("#mainListDiv").fadeIn();
 
-    });
+        });
     </script>
-<!--navbar-->
 </body>
 </html>
 
