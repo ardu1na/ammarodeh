@@ -79,3 +79,15 @@ def cart(request):
         return render(request, template_name, context)
     
 
+#@api_view(['GET'])
+#@authentication_classes([TokenAuthentication])
+#@permission_classes([IsAuthenticated])
+def checkout(request, cart_id):
+    cart = Cart.objects.filter(id=cart_id, done=False).first()
+    client = cart.client
+    
+    context = {
+        'cart' : cart,
+    }
+    template_name = 'checkout.html'
+    return render(request, template_name, context)
