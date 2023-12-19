@@ -5,100 +5,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="{% static 'Structure/css/navbar.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    {% block 'styles' %}
     <link rel="stylesheet" href="{% static 'Structure/css/output.css' %}">
     <link rel="stylesheet" href="{% static 'Structure/css/cards2.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="icon" href="{% static 'Structure/images/favicon.ico' %}" type="image/x-icon">
-        
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="{% static 'cart/css/libs.bundle.css' %}" />
+    
+    {% endblock %}
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{% static 'cart/css/theme.bundle.css' %}" />
-    <title>HypeJo</title>
+
     <style>
-        body {
-            background-color: rgba(40, 42, 58, 0.205); /* Change this to the color you want */
-            /* You can use color names, hex values, RGB, RGBA, HSL, HSLA, etc. */
-        }
+      body {
+          background-color: rgba(40, 42, 58, 0.205); /* Change this to the color you want */
+          /* You can use color names, hex values, RGB, RGBA, HSL, HSLA, etc. */
+      }
 
-        
-        .card__slide:nth-child(1) .image {
-          background-image: url("{% static '/Structure/images/p8.png' %}");
-          background-size: 100% auto;
-          background-position:center;
-          background-repeat: no-repeat;
-          width: 30%;
-          height: 150%;
-          position: absolute;
-          top: 50%;
-          left: 25%;
-          transform: translate3d(-55%, -40%, 0);
-          z-index: 2;
-          opacity: 0;
+      
+      .card__slide:nth-child(1) .image {
+        background-image: url("{% static '/Structure/images/p8.png' %}");
+        background-size: 100% auto;
+        background-position:center;
+        background-repeat: no-repeat;
+        width: 30%;
+        height: 150%;
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate3d(-55%, -40%, 0);
+        z-index: 2;
+        opacity: 0;
 
 
 
-        }
+      }
 .back__slide:nth-child(2):before {
-  background-image: url("{% static '/Structure/images/p8.png' %}");
-  opacity: 0.2;
-  background-repeat: no-repeat;
-  background-size: 101% auto;
-  background-position: right calc(50% - 14rem);
+background-image: url("{% static '/Structure/images/p8.png' %}");
+opacity: 0.2;
+background-repeat: no-repeat;
+background-size: 101% auto;
+background-position: right calc(50% - 14rem);
 }
 .back__slide:nth-child(2) .back-front-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 100%;
-  background-image: url("{% static '/Structure/images/bgw.jpg' %}");
-  background-size: 150% auto;
-  background-position: center calc(50% + 21rem);
-  background-repeat: no-repeat;
-  z-index: 0;
-  opacity: 0;
-  transform: translate3d(0, 10rem, 0);
-  transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
+position: absolute;
+top: 0;
+left: 0;
+min-width: 100%;
+height: 100%;
+background-image: url("{% static '/Structure/images/bgw.jpg' %}");
+background-size: 150% auto;
+background-position: center calc(50% + 21rem);
+background-repeat: no-repeat;
+z-index: 0;
+opacity: 0;
+transform: translate3d(0, 10rem, 0);
+transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
 }
 .card__slide:nth-child(2) .image {
-  background-image: url("{% static '/Structure/images/W_g.png' %}");
-  background-size: 100% auto;
-  background-position: 50% top;
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100%;
-  position: absolute;
-  top: 10%;
-  left: -5vw;
-  transform: translate3d(0, 20%, 0);
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-  transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
+background-image: url("{% static '/Structure/images/W_g.png' %}");
+background-size: 100% auto;
+background-position: 50% top;
+background-repeat: no-repeat;
+width: 100vw;
+height: 100%;
+position: absolute;
+top: 10%;
+left: -5vw;
+transform: translate3d(0, 20%, 0);
+z-index: 2;
+opacity: 0;
+pointer-events: none;
+z-index: 1;
+transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
 }
 .card__slide:nth-child(2) .back-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("{% static '/Structure/images/bgw.jpg' %}");
-  background-size: 100% auto;
-  background-position: center 100%;
-  background-repeat: no-repeat;
-  z-index: 1;
-  opacity: 0;
-  transform: translatey(0);
-  transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url("{% static '/Structure/images/bgw.jpg' %}");
+background-size: 100% auto;
+background-position: center 100%;
+background-repeat: no-repeat;
+z-index: 1;
+opacity: 0;
+transform: translatey(0);
+transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
 }
 
-    </style>
+  </style>
 </head>
 
 
@@ -152,24 +150,20 @@
 {% endblock %}
 
 
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Function used to shrink nav bar removing paddings and adding black background -->
 <script  src= "{% static 'Structure/js/navbar.js' %}"></script>
-<!--navbar-->
 <script src="{% static 'Structure/js/scrollanimation.js' %}"></script>
-<script>
-  $('.s-checkbox').on('change', function() {
-         $('.s-checkbox').not(this).prop('checked', false);
-     });
- </script>
 <script src="{% static 'Structure/js/cards2.js' %}"></script>
-   <!--==Jquery===========================-->
-   <script
-   src="https://code.jquery.com/jquery-3.6.1.js"
-   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-   crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
      
+     <script>
+      $('.s-checkbox').on('change', function() {
+             $('.s-checkbox').not(this).prop('checked', false);
+         });
+     </script>
 
 <script>
     date = new Date();
