@@ -54,6 +54,94 @@
   </div>
 </nav>
 
+
+    <!--==Product-Page=================================-->
+    <section id="product-page">
+        <div class="product-details">
+            <!--**Img*************************-->
+            <div class="product-img">
+
+            <!-- Swiper Slider -->
+
+                <div class="swiper-wrapper">
+
+                <!--**1******-->
+                <div class="swiper-slide">
+                    <img src="{{ product.image.url }}" />
+                </div>
+                </div>
+                <!--social-->
+                <div class="img-social-bar">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <!--**Text************************-->
+            <div class="product-text ">
+                <!--category-->
+                <span class="product-category">Market</span>
+                <h3 id="productName">{{ product.name }}</h3>
+                <span class="product-price">${{ product.price }}</span>
+                <p id="productDescription">
+                    {{ product.descrption }}
+                </p>
+                <!--size-->
+                
+
+                <!--btn-->
+                <div class="product-button">
+                    <a href="{% url 'products:add_product' product_id=product.id %}" class="add-bag-btn">Add To Bag</a>        
+                </div>
+                <!--help-btn-->
+                <a href="#" class="help-btn">Need Any Help?</a>
+            </div>
+        </div>
+    </section>
+
+    
+
+        <!--cardsanimation2-->
+        <div class="small-container1">
+            <h2 class="title1">Related Products</h2>
+            <div class="row">
+                {% for product in related_products %}
+                    <div class="col-4">
+                        <a href="{% url 'products:detail' product.id %}">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <h4>{{ product.name }}</h4>
+                            <div class="rating">
+                                <!-- Your rating stars here -->
+                            </div>
+                            <p style="color: black;">{{ product.price }}$</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+      <!-- Static product examples -->
+
+    </div>
+  </div>
+
+
+
+  <!--==Jquery===========================-->
+  <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $('.s-checkbox').on('change', function() {
+               $('.s-checkbox').not(this).prop('checked', false);
+           });
+    </script>
+
+    
 <script>
     $('.navTrigger').click(function () {
       $(this).toggleClass('active');
@@ -64,106 +152,6 @@
     });
     </script>
 <!--navbar-->
-
-    <!--==Product-Page=================================-->
-    <section id="product-page">
-    <div class="product-details">
-        <!--**Img*************************-->
-        <div class="product-img">
-
-        <!-- Swiper Slider -->
-
-            <div class="swiper-wrapper">
-
-            <!--**1******-->
-            <div class="swiper-slide">
-                <img src="{{ product.image.url }}" />
-            </div>
-            </div>
-            <!--social-->
-            <div class="img-social-bar">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-        <!--**Text************************-->
-        <div class="product-text">
-            <!--category-->
-            <span class="product-category">Market</span>
-            <h3 id="productName">{{ product.name }}</h3>
-            <span class="product-price">${{ product.price }}</span>
-            <p id="productDescription">
-                {{ product.descrption }}
-            </p>
-            <!--size-->
-            <div class="product-size-container">
-                <strong>Select Size:-</strong>
-                <div class="product-size">
-                    <!--xl-->
-                    <input type="checkbox" class="s-checkbox" id="s-xl">
-                    <label for="s-xl" class="s-label">XL</label>
-                    <!--Small-->
-                    <input type="checkbox" class="s-checkbox" id="s-s">
-                    <label for="s-s" class="s-label">S</label>
-                    <!--Medium-->
-                    <input type="checkbox" class="s-checkbox" id="s-m">
-                    <label for="s-m" class="s-label">M</label>
-                    <!--Large-->
-                    <input type="checkbox" class="s-checkbox" id="s-l">
-                    <label for="s-l" class="s-label">L</label>
-                </div>
-            </div>
-
-            <!--btn-->
-            <div class="product-button">
-                <a href="#" class="add-bag-btn">Add To Bag</a>
-                <a href="#" class="add-wishlist-btn">Add To Wishlist</a>
-            </div>
-            <!--help-btn-->
-            <a href="#" class="help-btn">Need Any Help?</a>
-        </div>
-    </div>
-    </section>
-
-    <!--==Jquery===========================-->
-    <script
-  src="https://code.jquery.com/jquery-3.6.1.js"
-  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-  crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
-        $('.s-checkbox').on('change', function() {
-               $('.s-checkbox').not(this).prop('checked', false);
-           });
-       </script>
-
-<!--cardsanimation2-->
-<div class="small-container1">
-    <h2 class="title1">Related Products</h2>
-    <div class="row">
-        {% for product in related_products %}
-            <div class="col-4">
-                <a href="{% url 'products:detail' product.id %}">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                    <h4>{{ product.name }}</h4>
-                    <div class="rating">
-                        <!-- Your rating stars here -->
-                    </div>
-                    <p style="color: black;">{{ product.price }}$</p>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
-</div>
-
-
-      <!-- Static product examples -->
-
-    </div>
-  </div>
-
 </body>
 </html>
 
