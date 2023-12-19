@@ -2,12 +2,31 @@ from django import forms
 from products.models import Client
 
 class ClientForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=30, required=True)
-    last_name = forms.CharField(max_length=30, required=True)
+    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={
+                'class':"form-control",
+                'id':"first_name",
+            }))
+    last_name = forms.CharField(max_length=30, required=True,widget=forms.TextInput(attrs={
+                'class':"form-control",
+                'id':"last_name",
+            }))
 
     class Meta:
         model = Client
         fields = ['phone_number', 'address']
+        widgets = {            
+             
+                 
+            'address': forms.TextInput(attrs={
+                'class':"form-control",
+                'id':"address",
+            }),
+            'phone_number': forms.TextInput(attrs={
+                'class':"form-control",
+                'id':"phone_number",
+            }),
+        }
+
 
     def save(self, commit=True):
         client = super(ClientForm, self).save(commit=False)

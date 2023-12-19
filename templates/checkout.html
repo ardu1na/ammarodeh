@@ -65,7 +65,7 @@
 
 
                             <!-- Checkout Panel Information-->
-                            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-4 my-4">
                               <h3 class="fs-5 fw-bolder m-0 lh-1">Contact information {{cart.client.user.username}}</h3>
                               
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label for="name" class="form-label">Name</label>
-                                    <div class="form-control"> {{form.first_name}}</div>
+                                    {{form.first_name}}
 
                                   </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label for="lastname" class="form-label">Lastname</label>
-                                    <div class="form-control"> {{form.last_name}}</div>
+                                    {{form.last_name}}
                                   </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                                 <div class="col-sm-12">
                                   <div class="form-group">
                                     <label for="phone" class="form-label">Phone number</label>
-                                    <div class="form-control"> {{form.phone_number}}</div>
+                                     {{form.phone_number}}
 
                                   </div>
                                 </div>
@@ -102,14 +102,14 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                       <label for="phone" class="form-label">Address</label>
-                                      <div class="form-control"> {{form.address}}</div>
+                                  {{form.address}}
                                     </div>
                                   </div>
 
 
                                 <div class="py-2">
                                   <div class="input-group mb-0 d-flex flex-row-reverse">
-                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3" id="submit-button">Submit</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
+                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3 mb-4" id="submit-button">Submit</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
 
                                   </div>
                               </div>
