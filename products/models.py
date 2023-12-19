@@ -111,7 +111,7 @@ class ProductCart(models.Model):
     def clean(self):
         if self.product.stock < 1:
             raise ValidationError(f"The quantity requested exceeds the quantity available ({self.product.stock})")
-        if self.cart.products.filter(id=self.product.id).exists():
+        if self.pk and self.cart.products.filter(id=self.product.id).exists():
             raise ValidationError(f"The product {self.product.name} is allready in the cart")
 
     def save(self, *args, **kwargs):
