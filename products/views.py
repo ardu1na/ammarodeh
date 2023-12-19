@@ -34,12 +34,8 @@ def add_product_into_cart(request, product_id):
     try:
         product = Products.objects.get(pk=product_id)
         product_cart, created = ProductCart.objects.get_or_create(cart=cart, product=product)
-        context = {
-            'cart': cart,
-            'cart_product': product_cart,
-            }
-        template_name = 'cart.html'    
-        return render(request, template_name, context)
+          
+        return redirect('cart')
     
     except Products.DoesNotExist:
         context = {
@@ -76,16 +72,24 @@ def delete_product_from_cart(request, product_id):
 #@api_view(['GET'])
 #@authentication_classes([TokenAuthentication])
 #@permission_classes([IsAuthenticated])
-def cart_detail(request):
+def cart(request):
     client = request.user.client
     try:
         cart = Cart.objects.get(client=client, done=False)
-        cart_serializer = CartDetailSerializer(instance=cart)
-        return Response({'cart':cart_serializer.data}, status=status.HTTP_200_OK)
+        context = {
+            'cart' : cart,
+            'client': client,
+        }
+        template_name = 'cart.html'
+        return render(request, template_name, context)
     
     except Cart.DoesNotExist:
         cart = Cart.objects.create(client=client, done=False)
-        cart_serializer = CartDetailSerializer(instance=cart)
-        return Response({'cart':cart_serializer.data}, status=status.HTTP_200_OK)
+        context = {
+            'cart' : cart,
+            'client': client,
+        }
+        template_name = 'cart.html'
+        return render(request, template_name, context)
     
 

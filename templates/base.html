@@ -93,7 +93,10 @@
 }
 
     </style>
+    {% block 'extra_styles' %}
+    {% endblock %}
 </head>
+
 
 <body>
   
@@ -194,6 +197,10 @@
     // Concatenate the hours, minutes, day of the week
     TimeElement.innerHTML = date.getHours() + ":" + date.getMinutes() + " " + dayType.dayTypeS();
   </script>
+
+
+  {% block 'extra_scripts' %}
+  {% endblock %}
 </body>
 </html>
 

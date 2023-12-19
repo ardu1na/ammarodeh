@@ -84,7 +84,7 @@
 
     <ul class="image-list">
       {% for product in products %}
-        <a href="{% url 'products:detail' product.id %}">
+        <a href="{% url 'product_detail' product.id %}">
 
             <img class="image-item" src="{{ product.image.url }}" />
             <p class="para1">{{ product.name }}</p>

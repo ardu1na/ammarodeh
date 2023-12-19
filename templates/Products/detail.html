@@ -92,7 +92,7 @@
 
                 <!--btn-->
                 <div class="product-button">
-                    <a href="{% url 'products:add_product' product_id=product.id %}" class="add-bag-btn">Add To Bag</a>        
+                    <a href="{% url 'add_product' product_id=product.id %}" class="add-bag-btn">Add To Bag</a>        
                 </div>
                 <!--help-btn-->
                 <a href="#" class="help-btn">Need Any Help?</a>
@@ -108,7 +108,7 @@
             <div class="row">
                 {% for product in related_products %}
                     <div class="col-4">
-                        <a href="{% url 'products:detail' product.id %}">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             <h4>{{ product.name }}</h4>
                             <div class="rating">
