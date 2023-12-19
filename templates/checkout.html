@@ -47,16 +47,16 @@
                         <!-- Logo-->
                         <a class="navbar-brand fw-bold fs-3 flex-shrink-0 mx-0 px-0" href="./index.html">
                                 <div class="d-flex align-items-center">
-                                    E&J
-                                </div>
+                                  MyStore </div>
                             </a>
                         <!-- / Logo-->
                         <nav class="d-none d-md-block">
                             <ul class="list-unstyled d-flex justify-content-start mt-4 align-items-center fw-bolder small">
                                 <li class="me-4"><a class="nav-link-checkout "
-                                        href="./cart.html">Carrito</a></li>
-                                <li class="me-4"><a class="nav-link-checkout active"
-                                        href="./checkout.html">Información</a></li>
+                                  href="{% url 'home' %}">Home</a></li>
+                                <li class="me-4"><a class="nav-link-checkout "
+                                        href="{% url 'cart' %}">Cart</a></li>
+                                <li class="me-4"><a class="nav-link-checkout active">Checkout</a></li>
                                                                 
                             </ul>
                         </nav>                        <div class="mt-5">
@@ -76,7 +76,7 @@
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label for="name" class="form-label">Name</label>
-                                    {{form.first_name}}
+                                    {{client_form.first_name}}
 
                                   </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label for="lastname" class="form-label">Lastname</label>
-                                    {{form.last_name}}
+                                    {{client_form.last_name}}
                                   </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                                 <div class="col-sm-12">
                                   <div class="form-group">
                                     <label for="phone" class="form-label">Phone number</label>
-                                     {{form.phone_number}}
+                                     {{client_form.phone_number}}
 
                                   </div>
                                 </div>
@@ -102,14 +102,14 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                       <label for="phone" class="form-label">Address</label>
-                                  {{form.address}}
+                                  {{client_form.address}}
                                     </div>
                                   </div>
 
 
                                 <div class="py-2">
                                   <div class="input-group mb-0 d-flex flex-row-reverse">
-                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3 mb-4" id="submit-button">Submit</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
+                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3 mb-4" id="submit-button" name="client_form">Submit</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
 
                                   </div>
                               </div>
@@ -144,14 +144,38 @@
 
                         <div class="py-4">
                           <div class="pb-5 d-flex justify-content-md-end align-items-center">
-                            <a href="http://link.mercadopago.com.ar/informaticaeyj" class="btn btn-dark w-100 w-md-auto" role="button" target="_blank">Pagar</a> 
+                            <a href="http://link.mercadopago.com.ar/informaticaeyj" class="btn btn-dark w-100 w-md-auto" role="button" target="_blank">Pay</a> 
                           </div>    
                         </div>
 
                         <div class="py-4">
                           <div class="pb-5 d-flex justify-content-md-end align-items-center">
-                            <p>Al hacer click se abrirá una nueva ventana de Mercado Pago, coloca el monto total. Luego del pago nos comunicaremos contigo por email.</p> 
+                            <p>By clicking, a new window to my wallet will open. Enter the total amount from above and send the money. Copy the transaction code here. After payment, we will contact you by email.</p>
+
                           </div>    
+
+                          <div class="row" id="profile-form">
+                            <form method="post">{% csrf_token %}
+                            
+                              <!-- Address-->
+                              <div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="payment_code" class="form-label"></label>
+                                        {{cart_form.payment_code}}
+                                  </div>
+                                </div>
+
+
+                              <div class="py-2">
+                                <div class="input-group mb-0 d-flex flex-row-reverse">
+                                    <button type="submit" class="btn btn-dark btn-sm px-4 py-3 mb-4" id="submit-button" name="cart_form">Submit</button>  
+
+                                </div>
+                            </div>
+                          </form>
+
+                          </div>
+                          
                         </div>
 
                     </div>

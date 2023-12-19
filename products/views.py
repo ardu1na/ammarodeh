@@ -1,6 +1,6 @@
 from django.shortcuts import render , get_object_or_404, redirect
 from django.urls import reverse
-from products.forms import ClientForm
+from products.forms import ClientForm, CartForm
 from .models import Products, \
                     Cart, ProductCart
 
@@ -83,17 +83,28 @@ def cart(request):
 #@authentication_classes([TokenAuthentication])
 #@permission_classes([IsAuthenticated])
 def checkout(request, cart_id):
-    cart = Cart.objects.filter(id=cart_id, done=False).first()
+    cart = Cart.objects.filter(id=cart_id).first()
     if request.method == 'GET':
-        form = ClientForm(instance=cart.client)
-    if request.method == 'POST':
-        form = ClientForm(request.POST, instance=cart.client)
-        if form.is_valid():
-            updated_client = form.save()
-    context = {
+        client_form = ClientForm(instance=cart.client)
+        cart_form = CartForm(instance=cart)
+        context = {
         'cart' : cart,
-        'form': form,
-    }
+        'client_form': client_form,
+        'cart_form': cart_form,
+        }
 
-    template_name = 'checkout.html'
-    return render(request, template_name, context)
+        template_name = 'checkout.html'
+        return render(request, template_name, context)
+    if request.method == 'POST':
+        if 'client_form' in request.POST:
+            client_form = ClientForm(request.POST, instance=cart.client)
+            if client_form.is_valid():
+                updated_client = client_form.save()
+        if 'cart_form' in request.POST: # this is for checking the payment id submited by client bf close order 
+            cart_form = CartForm(request.POST, instance=cart)
+            if cart_form.is_valid():
+                updated_cart = cart_form.save()
+                updated_cart.done = True
+                updated_cart.save()
+        return redirect('checkout', cart.id)
+    

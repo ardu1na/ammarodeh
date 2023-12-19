@@ -93,6 +93,7 @@ class Cart(models.Model):
     done = models.BooleanField(default=False)
     products_q = models.SmallIntegerField(default=0, blank=True, null=True)
     date_created = models.DateField(auto_now_add=True, editable=False)
+    payment_code = models.CharField(max_length=150, null=True, blank=True)
 
     def __str__(self):
         date_time = self.date_created.strftime('%H:%M %d/%m')
@@ -144,7 +145,7 @@ class Order(models.Model):
     cart = models.OneToOneField(Cart, related_name="order", on_delete=models.CASCADE)
     
     paid = models.BooleanField(default=False)
-    
+
     sended = models.BooleanField(default=False)
     
     closed = models.BooleanField(default=False)
