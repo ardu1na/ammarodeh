@@ -1,34 +1,26 @@
-<!doctype html>
-<html lang="es">
+{% extends 'base.html' %}
 
-<!-- Head -->
-<head>
-  <!-- Page Meta Tags-->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
+{% load static %}
 
+{% block 'styles' %}
   <!-- Custom Google Fonts-->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@300;400;700&display=auto"
     rel="stylesheet">
 
   <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-  <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'cart/images/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'cart/images/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'cart/images/favicon/favicon-16x16.png' %}">
+  <link rel="mask-icon" href="{% static 'cart/images/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
   <!-- Vendor CSS -->
-  <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+  <link rel="stylesheet" href="{% static 'cart/css/libs.bundle.css' %}" />
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+  <link rel="stylesheet" href="{% static 'cart/css/theme.bundle.css' %}" />
 
   <!-- Fix for custom scrollbar if JS is disabled-->
   <noscript>
@@ -42,12 +34,9 @@
     </style>
   </noscript>
 
-  <!-- Page Title -->
-  <title>E&J Computación | e-commerce</title>
+  {% endblock %}
 
-</head>
-<body class="">
-
+  {% block 'main' %}
     <!-- Main Section-->
     <section class="mt-0  vh-lg-100">
         <!-- Page Content Goes Here -->
@@ -172,14 +161,17 @@
         <!-- /Page Content -->
     </section>
     <!-- / Main Section-->
+
+    {% endblock %}
+ 
+    {% block 'extra_scripts' %}
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="./assets/js/vendor.bundle.js"></script>
+    <script src="{% static 'cart/js/vendor.bundle.js' %}"></script>
     
     <!-- Theme JS -->
-    <script src="./assets/js/theme.bundle.js"></script>
-</body>
-
-</html>
+    <script src="{% static 'cart/js/theme.bundle.js' %}"></script>
+    {% endblock %}
