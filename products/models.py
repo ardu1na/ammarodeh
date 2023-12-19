@@ -103,20 +103,18 @@ class Cart(models.Model):
 class ProductCart(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='products')
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='carts')
-    ammount = models.PositiveSmallIntegerField(default=1)
-    subtotal = models.IntegerField(default=0, null=True, blank=True)
 
 
     def __str__(self):
-        return f'{self.product} ({self.ammount} u.) ${self.subtotal}'
+        return f'{self.product} ${self.product.price}'
         
     def clean(self):
-        if self.ammount > self.product.stock:
+        if self.product.stock < 1:
             raise ValidationError(f"The quantity requested exceeds the quantity available ({self.product.stock})")
+        if self.cart.products.filter(id=self.product.id).exists():
+            raise ValidationError(f"The product {self.product.name} is allready in the cart")
 
     def save(self, *args, **kwargs):
-        if self.ammount != 0:
-            self.subtotal = self.product.price * self.ammount
         self.clean()
         super().save(*args, **kwargs)
         
@@ -132,8 +130,8 @@ def update_cart(sender, instance, **kwargs):
     total = 0
     q = 0
     for product in products:
-        total += product.subtotal
-        q += product.ammount
+        total += product.product.price
+        q += 1
     cart.total = total
     cart.products_q = q    
     cart.save()
@@ -165,7 +163,7 @@ class Order(models.Model):
         products_in_order = self.cart.products.all()
         for product_in_order in products_in_order:
             product = product_in_order.product
-            product.stock -= product_in_order.ammount
+            product.stock -= 1
             product.save()
     
     def __str__(self):

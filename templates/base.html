@@ -13,15 +13,18 @@
     <link rel="stylesheet" href="{% static 'Structure/css/output.css' %}">
     <link rel="stylesheet" href="{% static 'Structure/css/cards2.css' %}">
     <link rel="icon" href="{% static 'Structure/images/favicon.ico' %}" type="image/x-icon">
-    
-    {% endblock %}
-
-
     <style>
       body {
           background-color: rgba(40, 42, 58, 0.205); /* Change this to the color you want */
           /* You can use color names, hex values, RGB, RGBA, HSL, HSLA, etc. */
       }
+    </style>
+
+    {% endblock %}
+
+
+    <style>
+      
 
       
       .card__slide:nth-child(1) .image {
@@ -102,32 +105,34 @@ transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
 
 <body>
   
+
+{% block 'main' %}
   <!--navbar-->
 
 
   <nav class="nav">
-    <div class="container2">
+    <div class="container2 mb-5">
         <div class="logo">
             <a href="#">HypeJo</a>
         </div>
         <div id="mainListDiv" class="main_list">
-          {% block signup %}
-          <ul class="navlinks">
-            {% if request.user.is_authenticated %}
-            <ul>
-                <li><a href=#>dashboard</a></li>
-                <li><a href="#"> inbox </a></li>
-                <li><a href="{% url 'logout' %}?next=/">logout</a></li>
-            </ul>
-        {% else %}
-            <ul>
-                <li><a href="{% url 'signup' %}">Signup</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        {% endif %}
-          </div>
+            {% block signup %}
+            <ul class="navlinks">
+              {% if request.user.is_authenticated %}
+              <ul>
+                  <li><a href=#>dashboard</a></li>
+                  <li><a href="#"> inbox </a></li>
+                  <li><a href="{% url 'logout' %}?next=/">logout</a></li>
+              </ul>
+          {% else %}
+              <ul>
+                  <li><a href="{% url 'signup' %}">Signup</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Contact</a></li>
+              </ul>
+          {% endif %}
+        </div>
         <span class="navTrigger">
             <i></i>
             <i></i>
@@ -148,11 +153,6 @@ transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
 {% block 'content' %}
 
 {% endblock %}
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script  src= "{% static 'Structure/js/navbar.js' %}"></script>
 <script src="{% static 'Structure/js/scrollanimation.js' %}"></script>
@@ -195,6 +195,13 @@ transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
     // Concatenate the hours, minutes, day of the week
     TimeElement.innerHTML = date.getHours() + ":" + date.getMinutes() + " " + dayType.dayTypeS();
   </script>
+
+{% endblock %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
   {% block 'extra_scripts' %}

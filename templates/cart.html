@@ -22,33 +22,28 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="{% static 'cart/css/theme.bundle.css' %}" />
 
-<!-- Fix for custom scrollbar if JS is disabled-->
-<noscript>
   <style>
-    /**
-        * Reinstate scrolling for non-JS clients
-        */
-    .simplebar-content-wrapper {
-      overflow: auto;
+   
+    body {
+        background-color: white; /* Change this to the color you want */
+        /* You can use color names, hex values, RGB, RGBA, HSL, HSLA, etc. */
     }
   </style>
-</noscript>
 {% endblock %}
 
-{% block 'content' %}
+{% block 'main' %}
 
     <!-- Main Section-->
     <section class="mt-0 overflow-lg-hidden  vh-lg-100">
         <!-- Page Content Goes Here -->
-        <div class="container mt-4 pt-4">
-            <div class="row g-0 vh-lg-100 mt-4">
-                <div class="col-12 col-lg-7 pt-5 pt-lg-10">
-                    <div class="pe-lg-5">
+        <div class="container">
+            <div class="row vh-lg-100">
+                <div class="bg-white col-12 col-lg-7 pt-5 pt-lg-10">
+                    <div class="pe-lg-5 ">
                         
                         <nav class="d-none d-md-block">
                             <ul class="list-unstyled d-flex justify-content-start mt-4 align-items-center fw-bolder small">
-                                <li class="me-4"><a class="nav-link-checkout active"
-                                        href="./cart.html">Carrito</a></li>
+                                <li class="me-4"><a class="nav-link-checkout active">Your cart</a></li>
                                
                             </ul>
                         </nav>                        
