@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         
-                        <a href="#" class="btn btn-dark w-100 text-center py-4" role="button" id="finalizarCompraBtn">Finalizar compra</a>                    </div>
+                        <a href="{% url 'checkout' cart_id=cart.id %}" class="btn btn-dark w-100 text-center py-4" role="button" id="finalizarCompraBtn">Checkout</a>                    </div>
                 </div>
             </div>
         </div>

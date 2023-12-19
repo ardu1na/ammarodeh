@@ -1,6 +1,6 @@
 from django.shortcuts import render , get_object_or_404, redirect
 from django.urls import reverse
-
+from products.forms import ClientForm
 from .models import Products, \
                     Cart, ProductCart
 
@@ -52,7 +52,7 @@ def delete_cart_product(request, product_cart_id):
     product_cart = ProductCart.objects.filter(id=product_cart_id).first()
     if product_cart:
         product_cart.delete() ## AJAX HERE
-        return redirect(reverse('cart')+ "?deleted")
+    return redirect(reverse('cart')+ "?deleted")
 
 
 #@api_view(['GET'])
@@ -84,10 +84,16 @@ def cart(request):
 #@permission_classes([IsAuthenticated])
 def checkout(request, cart_id):
     cart = Cart.objects.filter(id=cart_id, done=False).first()
-    client = cart.client
-    
+    if request.method == 'GET':
+        form = ClientForm(instance=cart.client)
+    if request.method == 'POST':
+        form = ClientForm(request.POST, instance=cart.client)
+        if form.is_valid():
+            updated_client = form.save()
     context = {
         'cart' : cart,
+        'form': form,
     }
+
     template_name = 'checkout.html'
     return render(request, template_name, context)

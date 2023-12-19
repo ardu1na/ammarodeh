@@ -77,51 +77,55 @@
 
                             <!-- Checkout Panel Information-->
                             <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-4">
-                              <h3 class="fs-5 fw-bolder m-0 lh-1">Contacto</h3>
+                              <h3 class="fs-5 fw-bolder m-0 lh-1">Contact information {{cart.client.user.username}}</h3>
+                              
                             </div>
                             
                             <div class="row" id="profile-form">
+                              <form method="post">{% csrf_token %}
                                 <!-- First Name-->
                                 <div class="col-sm-6">
                                   <div class="form-group">
-                                    <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="name" placeholder="" value="" required="">
+                                    <label for="name" class="form-label">Name</label>
+                                    <div class="form-control"> {{form.first_name}}</div>
+
                                   </div>
                                 </div>
                               
                                 <!-- Last Name-->
                                 <div class="col-sm-6">
                                   <div class="form-group">
-                                    <label for="lastname" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="lastname" placeholder="" value="" required="">
+                                    <label for="lastname" class="form-label">Lastname</label>
+                                    <div class="form-control"> {{form.last_name}}</div>
                                   </div>
                                 </div>
 
                                 <!-- phone Number-->
                                 <div class="col-sm-12">
                                   <div class="form-group">
-                                    <label for="phone" class="form-label">Número de teléfono</label>
-                                    <input type="text" class="form-control" id="phone" placeholder=" 54 9 11 5555 3333" value="" required="">
+                                    <label for="phone" class="form-label">Phone number</label>
+                                    <div class="form-control"> {{form.phone_number}}</div>
+
                                   </div>
                                 </div>
 
                                 <!-- Address-->
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                      <label for="phone" class="form-label">Dirección</label>
-                                      <input type="text" class="form-control" id="address" placeholder="Avenida 234, Rio Cuarto, Córdoba, Argentina" value="" required="">
+                                      <label for="phone" class="form-label">Address</label>
+                                      <div class="form-control"> {{form.address}}</div>
                                     </div>
                                   </div>
 
 
                                 <div class="py-2">
                                   <div class="input-group mb-0 d-flex flex-row-reverse">
-                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3" id="submit-button">Guardar</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
+                                      <button type="submit" class="btn btn-dark btn-sm px-4 py-3" id="submit-button">Submit</button>    <!-- ACA MANDAR UN OK DESDE EL FRONT -->
 
                                   </div>
                               </div>
+                            </form>
 
-                            
                             </div>
                             
                             
@@ -145,7 +149,7 @@
                                 <div>
                                     <p class="m-0 fw-bold fs-5">Total</p>
                                 </div>
-                                <p class="m-0 fs-5 fw-bold" id="cartTotal">$0</p>
+                                <p class="m-0 fs-5 fw-bold" id="cartTotal">${{cart.total}}</p>
                             </div>
                         </div>
 
@@ -169,174 +173,6 @@
     </section>
     <!-- / Main Section-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-      
-      const token = localStorage.getItem('token');
-            
-            
-      // Fetch existing profile data and populate the form fields
-      fetch('http://127.0.0.1:8000/api/shop/profile/', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Token ${token}`
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        const nameField = document.getElementById('name');
-        const lastnameField = document.getElementById('lastname');
-        const phoneField = document.getElementById('phone');
-
-        nameField.value = data.name || '';  // Populate with existing name or leave blank
-        lastnameField.value = data.lastname || '';  // Populate with existing lastname or leave blank
-        phoneField.value = data.phone || '';  // Populate with existing phone or leave blank
-      });
-    </script>
-
-      <script>
-
-      document.getElementById('submit-button').addEventListener('click', function(event) {
-          // Prevent the default button click behavior (e.g., page reload)
-          event.preventDefault();
-  
-          // Get the values from your input elements manually
-          const nameProfile = document.getElementById('name').value;
-          const lastnameProfile = document.getElementById('lastname').value;
-          const phoneProfile = document.getElementById('phone').value;
-          const addressProfile = document.getElementById('address').value;
-
-          // Construct the form data
-          const formData = new FormData();
-          formData.append('name', nameProfile);
-          formData.append('lastname', lastnameProfile);
-          formData.append('phone', phoneProfile);
-          formData.append('address', addressProfile);
-
-          fetch('http://127.0.0.1:8000/api/shop/profile/update/', {
-              method: 'POST',
-              headers: {
-                  'Authorization': `Token ${token}`
-              },
-              body: formData
-          })
-          .then(response => {
-              if (response.ok) {
-                location.reload();
-                 
-
-                   
-              } else if (response.status === 409) {
-                  return response.json(); // Parse the JSON error response from the server   
-              } else {
-                  throw new Error('update failed');
-              }
-          })
-      });
-  </script>
-  
-  
-  <script>
-    const apiBaseUrl = 'http://127.0.0.1:8000';
-    document.addEventListener("DOMContentLoaded", function() {
-
-        // JavaScript code to fetch user authentication status from Django API
-        const token = localStorage.getItem('token');
-        const cartTable = document.getElementById('cartTable');
-        const cartTotal= document.getElementById('cartTotal');
-
-        let cart = {}; 
-
-        
-            fetch('http://127.0.0.1:8000/api/shop/cart/', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Token ${token}`
-                }
-            }).then(response => response.json())
-            .then(data => {
-                 
-                cart = data.cart;
-                products = cart.products;
-
-                cartTotal.textContent = '$' + cart.total;
-
-                let cartItemsHTML = '';  // Initialize an empty string to store the generated HTML
-
-                // Loop through each product in the cart and generate HTML
-                products.forEach(product => {
-                    cartItemsHTML += `
-
-
-                    <!-- Cart Item-->
-                        <div class="row mx-0 py-4 g-0 border-bottom">
-                            <div class="col-2 position-relative">
-                                <picture class="d-block border">
-                                    <img class="img-fluid " src="${apiBaseUrl}/${product.image}" alt="">
-                                </picture>
-                            </div>
-                            <div class="col-9 offset-1">
-                                <div>
-                                    <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                        ${product.product_name}
-                                        <i class="ri-close-line ms-3" id="closeIcon-${product.id}"></i>
-                                    </h6>
-                                </div>
-                                <p class="fw-bolder text-end text-muted m-0">$${product.subtotal}</p>
-                            </div>
-                        </div>
-                    <!-- / Cart Item-->
-                    `;
-                });
-
-                cartTable.innerHTML = `
-                    
-                        ${cartItemsHTML}
-                    
-                `;
-                            
-            // Add click event listeners to close icons
-            products.forEach(product => {
-                const closeIcon = document.getElementById(`closeIcon-${product.id}`);
-                closeIcon.addEventListener('click', () => handleDeleteProduct(product.id));
-            });
-
-            // Function to handle delete product action
-            function handleDeleteProduct(productId) {
-                fetch(`${apiBaseUrl}/api/shop/cart/delete/${productId}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Token ${token}`
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle success response if needed
-                    console.log('Product deleted:', data);
-                    // Remove the deleted product's HTML from the cart
-                    const productElement = document.getElementById(`closeIcon-${productId}`).closest('.border-bottom');
-                    productElement.remove();
-                    location.reload();
-
-                })
-                .catch(error => {
-                    console.error('Error deleting product:', error);
-                });
-            }
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-
-
-            
-            
-            
-     
-            
-    })
-
-    </script>
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
