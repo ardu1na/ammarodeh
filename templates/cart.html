@@ -70,7 +70,7 @@
                                                         <h6 class="justify-content-between d-flex align-items-start mb-2">
                                                             <a class="text-decoration-none" href="{% url 'product_detail' product_cart.product.id %}"> {{product_cart.product.name}} 
                                                             </a>
-                                                            <i class="ri-close-line ms-3" id="closeIcon-${product.id}"></i>
+                                                            <a href="{% url 'delete_product' product_cart_id=product_cart.id %}"> <i class="ri-close-line ms-3" id="closeIcon-${product.id}"></i> </a>
                                                         </h6>
                                                     </div>
                                                     <a href="{% url 'product_detail' product_cart.product.id %}">

@@ -1,4 +1,6 @@
 from django.shortcuts import render , get_object_or_404, redirect
+from django.urls import reverse
+
 from .models import Products, \
                     Cart, ProductCart
 
@@ -43,30 +45,14 @@ def add_product_into_cart(request, product_id):
         }
         return redirect('home')
 
-
-
 #@api_view(['DELETE'])
 #@authentication_classes([TokenAuthentication])
 #@permission_classes([IsAuthenticated])
-def delete_product_from_cart(request, product_id):
-    client = request.user.client
-    try:
-       # Delete the product from the cart
-        try:
-            product_cart = ProductCart.objects.get(pk=product_id)
-            cart = product_cart.cart
-            if cart.client == client:
-                product_cart.delete()
-        except ProductCart.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        
-        cart_serializer = CartSerializer(instance=cart)
-        return Response({'cart': cart_serializer.data}, status=status.HTTP_200_OK)
-    
-    except Cart.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-
+def delete_cart_product(request, product_cart_id):
+    product_cart = ProductCart.objects.filter(id=product_cart_id).first()
+    if product_cart:
+        product_cart.delete() ## AJAX HERE
+        return redirect(reverse('cart')+ "?deleted")
 
 
 #@api_view(['GET'])
