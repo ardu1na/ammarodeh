@@ -11,7 +11,7 @@ class CartForm(forms.ModelForm):
                 'class':"form-control",
                 'id':"payment_code",
             }),}
-
+    
 class ClientForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={
                 'class':"form-control",
@@ -24,7 +24,7 @@ class ClientForm(forms.ModelForm):
 
     class Meta:
         model = Client
-        fields = ['phone_number', 'address']
+        fields = ['phone_number', 'address', 'last_name', 'first_name']
         widgets = {            
              
                  
@@ -50,3 +50,10 @@ class ClientForm(forms.ModelForm):
             client.save()
 
         return client
+    
+    def __init__(self, *args, **kwargs):
+        super(ClientForm, self).__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            self.fields['first_name'].widget.attrs['placeholder'] = instance.user.first_name
+            self.fields['last_name'].widget.attrs['placeholder'] = instance.user.last_name
