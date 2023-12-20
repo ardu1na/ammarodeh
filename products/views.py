@@ -16,7 +16,7 @@ def detail (request , pk) :
 
 
 def product_list(request):
-    products = Products.objects.all()  # Assuming you have a Product model
+    products = Products.objects.all()  
     return render(request, 'structure/test_page.html', {'products': products})
 
 
@@ -27,9 +27,6 @@ def product_list(request):
 ##########################
 ################################## Cart and shopping logic
 
-#@api_view(['POST', 'GET'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
 def add_product_into_cart(request, product_id):
     client = request.user.client
     cart, created = Cart.objects.get_or_create(client=client, done=False)
@@ -45,9 +42,6 @@ def add_product_into_cart(request, product_id):
         }
         return redirect('home')
 
-#@api_view(['DELETE'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
 def delete_cart_product(request, product_cart_id):
     product_cart = ProductCart.objects.filter(id=product_cart_id).first()
     if product_cart:
@@ -55,9 +49,6 @@ def delete_cart_product(request, product_cart_id):
     return redirect(reverse('cart')+ "?deleted")
 
 
-#@api_view(['GET'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
 def cart(request):
     client = request.user.client
     try:
@@ -78,10 +69,6 @@ def cart(request):
         template_name = 'cart.html'
         return render(request, template_name, context)
     
-
-#@api_view(['GET'])
-#@authentication_classes([TokenAuthentication])
-#@permission_classes([IsAuthenticated])
 def checkout(request, cart_id):
     cart = Cart.objects.filter(id=cart_id).first()
     if request.method == 'GET':

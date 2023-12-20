@@ -122,7 +122,8 @@ transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
               <ul>
                   <li><a href=#>dashboard</a></li>
                   <li><a href="#"> inbox </a></li>
-                  <li><a href="{% url 'logout' %}?next=/">logout</a></li>
+                  <li><a href="#" id="logout-link">Logout</a></li>
+
               </ul>
           {% else %}
               <ul>
@@ -196,6 +197,30 @@ transition: transform 600ms 300ms linear, opacity 300ms 500ms linear;
     TimeElement.innerHTML = date.getHours() + ":" + date.getMinutes() + " " + dayType.dayTypeS();
   </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var logoutLink = document.getElementById('logout-link');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', function(event) {
+                event.preventDefault();  // Prevent the default behavior of the link
+    
+                var form = document.createElement('form');
+                form.method = 'post';
+                form.action = '{% url "logout" %}';  
+                document.body.appendChild(form);
+    
+                var csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrfmiddlewaretoken';
+                csrfInput.value = '{{ csrf_token }}';  // Include the CSRF token value
+                form.appendChild(csrfInput);
+    
+                form.submit();
+            });
+        }
+    });
+    </script>
+    
 {% endblock %}
 
 
