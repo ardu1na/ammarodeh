@@ -10,6 +10,7 @@ class CartForm(forms.ModelForm):
             'payment_code': forms.TextInput(attrs={
                 'class':"form-control",
                 'id':"payment_code",
+                'placeholder': 'Payment Code'
             }),}
     
 class ClientForm(forms.ModelForm):

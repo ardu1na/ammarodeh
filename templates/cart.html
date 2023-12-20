@@ -37,6 +37,7 @@
     <section class="mt-0 overflow-lg-hidden  vh-lg-100">
         <!-- Page Content Goes Here -->
         <div class="container">
+
             <div class="row vh-lg-100">
                 <div class="bg-white col-12 col-lg-7 pt-5 pt-lg-10">
                     <div class="pe-lg-5 ">
@@ -56,7 +57,6 @@
 
 
                                     <!-- Cart Items-->
-                                        
                                         {% for product_cart in cart.products.all %}
                                         <!-- Cart Item-->
                                             <div class="row mx-0 py-4 g-0 border-bottom">
@@ -117,6 +117,8 @@
                         <a href="{% url 'checkout' cart_id=cart.id %}" class="btn btn-dark w-100 text-center py-4" role="button" id="finalizarCompraBtn">Checkout</a>                    </div>
                 </div>
             </div>
+            
+
         </div>
         <!-- /Page Content -->
     </section>
