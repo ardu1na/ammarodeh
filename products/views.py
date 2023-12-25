@@ -1,4 +1,5 @@
 from django.shortcuts import render , get_object_or_404, redirect
+from django.http import HttpResponse
 from django.urls import reverse
 from products.forms import ClientForm, CartForm
 from .models import Products, \
@@ -6,28 +7,38 @@ from .models import Products, \
 
 
 ############################################
-from collections import defaultdict
+import xml.etree.ElementTree as ET
 
 def get_client_transactions(request, client_id):
     client = Client.objects.filter(id=client_id).first()
     transactions = Order.objects.filter(cart__client=client)
 
-    transactions_by_category = defaultdict(list)
+    transactions_by_category = {}
 
     for transaction in transactions:
         cart = transaction.cart
         for product_cart in cart.products.all():
-            category = product_cart.product.category 
+            category = product_cart.product.category.name  
+            if category not in transactions_by_category:
+                transactions_by_category[category] = []
             transactions_by_category[category].append(transaction)
 
+    root = ET.Element("transactions")
+
     for category, category_transactions in transactions_by_category.items():
-     
-        print(f"Table for {category} transactions:")
-        print("Transaction ID\tProduct")
+        category_element = ET.SubElement(root, "category", name=category)
         for transaction in category_transactions:
+            transaction_element = ET.SubElement(category_element, "transaction", id=str(transaction.id))
             for product_cart in transaction.cart.products.all():
-                print(f"{transaction.id}\t{product_cart.product.name}\t")
-        print("\n")
+                product_element = ET.SubElement(transaction_element, "product")
+                ET.SubElement(product_element, "name").text = product_cart.product.name
+    tree = ET.ElementTree(root)
+
+    tree.write("transactions.xml", encoding="utf-8", xml_declaration=True)
+
+    return HttpResponse("XML exported successfully.")
+
+
 
 
 
