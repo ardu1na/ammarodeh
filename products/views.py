@@ -6,14 +6,29 @@ from .models import Products, \
 
 
 ############################################
+from collections import defaultdict
 
 def get_client_transactions(request, client_id):
     client = Client.objects.filter(id=client_id).first()
     transactions = Order.objects.filter(cart__client=client)
+
+    transactions_by_category = defaultdict(list)
+
     for transaction in transactions:
         cart = transaction.cart
         for product_cart in cart.products.all():
-                print(product_cart)
+            category = product_cart.product.category 
+            transactions_by_category[category].append(transaction)
+
+    for category, category_transactions in transactions_by_category.items():
+     
+        print(f"Table for {category} transactions:")
+        print("Transaction ID\tProduct")
+        for transaction in category_transactions:
+            for product_cart in transaction.cart.products.all():
+                print(f"{transaction.id}\t{product_cart.product.name}\t")
+        print("\n")
+
 
 
 ############################################
