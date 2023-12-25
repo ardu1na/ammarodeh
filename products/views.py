@@ -2,7 +2,21 @@ from django.shortcuts import render , get_object_or_404, redirect
 from django.urls import reverse
 from products.forms import ClientForm, CartForm
 from .models import Products, \
-                    Cart, ProductCart
+                    Cart, ProductCart, Client, Order
+
+
+############################################
+
+def get_client_transactions(request, client_id):
+    client = Client.objects.filter(id=client_id).first()
+    transactions = Order.objects.filter(cart__client=client)
+    for transaction in transactions:
+        cart = transaction.cart
+        for product_cart in cart.products.all():
+                print(product_cart)
+
+
+############################################
 
 def detail (request , pk) :
     product = get_object_or_404(Products , pk=pk)
